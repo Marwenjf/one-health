@@ -1,35 +1,29 @@
 <%- include('layout/header') %>
 
 <div class="container mt-5">
-    <form>
+    <form method="post" action="/register">
   
         <!-- Name input -->
         <div class="form-outline mb-4">
-          <input type="text" id="registerName" class="form-control" />
-          <label class="form-label" for="registerName">Name</label>
-        </div>
-  
-        <!-- Username input -->
-        <div class="form-outline mb-4">
-          <input type="text" id="registerUsername" class="form-control" />
-          <label class="form-label" for="registerUsername">Username</label>
+          <input type="text" placeholder="Name" name="name" class="form-control" />
         </div>
   
         <!-- Email input -->
         <div class="form-outline mb-4">
-          <input type="email" id="registerEmail" class="form-control" />
-          <label class="form-label" for="registerEmail">Email</label>
+          <input type="email" placeholder="Email" name="email" class="form-control" />
         </div>
   
         <!-- Password input -->
         <div class="form-outline mb-4">
-          <input type="password" id="registerPassword" class="form-control" />
-          <label class="form-label" for="registerPassword">Password</label>
+          <input type="password" placeholder="Password" name="password" class="form-control" />
         </div>
-  
-  
+        <% if(message.length>0) { %> 
+        <div class="alert alert-danger">
+          <%= message %>
+        </div>
+        <% } %>
         <!-- Submit button -->
-        <button type="submit" class="btn btn-primary btn-block mb-3">Sign in</button>
+        <button type="submit" class="btn btn-primary btn-block mb-3">Register</button>
       </form>
 </div>
 
