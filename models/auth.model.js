@@ -50,30 +50,25 @@ exports.registerAction = (name,email,password) =>{
 }
 
 exports.login = (email, password) => {
+    
     return new Promise((resolve,reject)=>{
+
         User.sync({ force: false }).then(()=>{
-            return User.findOne({where: {email:email}})
-        }).then(user=>{
-            console.log(user)
-            if (user) {
-                bcrypt.compare(password,user.password)
-                .then((verif)=>{
-                    console.log(verif)
-                    if (verif) {
-                        console.log('yes')
-                        console.log(user.id)
-                        resolve(user.id)
+           return User.findOne({email:email})
+        }).then((user)=>{
+            if(user){
+                bcrypt.compare(password,user.password).then((verif)=>{
+                    if(verif){
+                        resolve(user._id)
+                    }else{
+                        reject('User or password error')
                     }
-                })   
+                })
+            }else{
+                reject("we don't have this user in our database")
             }
-            else{
-                console.log('not user')
-                reject('User or password error')
-            }
-        })
-        .catch((err)=>{
-            console.log('catch')
+        }).catch(()=>{
             reject(err)
-        })   
+        })
     })
 }
