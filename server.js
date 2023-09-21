@@ -158,14 +158,12 @@ app.get('/login',(req,res)=>{
 
 app.post('/login',(req,res)=>{
     authModel.login(req.body.email,req.body.password)
-    .then(id=>{
-        console.log('id '+id)
-        req.session.userId = id
+    .then((id)=>{
+        req.session.userId=id
         res.redirect('/')
-    })
-    .catch(err=>{
-        req.flash('error', err)
-        res.redirect('/login');  
+    }).catch((err)=>{
+        req.flash('error',err)
+        res.redirect('/login')
     })
 })
 
