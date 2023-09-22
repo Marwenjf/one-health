@@ -59,7 +59,7 @@ exports.login = (email, password) => {
             if(user){
                 bcrypt.compare(password,user.password).then((verif)=>{
                     if(verif){
-                        resolve(user._id)
+                        resolve(user.id)
                     }else{
                         reject('User or password error')
                     }
