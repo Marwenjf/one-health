@@ -13,7 +13,8 @@ const User = sequelize.define('user', {
         type: DataTypes.STRING
     },
     email: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        unique:true
     },
     password: {
         type: DataTypes.STRING
@@ -38,7 +39,7 @@ exports.registerAction = (name,email,password) =>{
                 email:email,
                 password:hpassword
             }
-        User.create(user)
+        return User.create(user)
         }).then(user=>{
             resolve('registred!')
         })
