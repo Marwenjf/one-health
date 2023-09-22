@@ -61,7 +61,7 @@ exports.login = (email, password) => {
                     if(verif){
                         resolve(user.id)
                     }else{
-                        reject('User or password error')
+                        reject('Email or password error')
                     }
                 })
             }else{
